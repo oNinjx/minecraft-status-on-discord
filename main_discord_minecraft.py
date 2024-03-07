@@ -4,6 +4,8 @@ import requests
 import os
 import datetime
 import pytz
+from keep_alive import keep_alive
+keep_alive()
 
 # Retrieve Discord bot token from Replit secrets environment variable
 TOKEN = os.getenv('token')
