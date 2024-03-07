@@ -1,0 +1,1 @@
+# minecraft-status-on-discord
