@@ -8,8 +8,8 @@ import pytz
 TOKEN = 'INSERT_TOKEN'
 
 # Minecraft server IP and port
-MINECRAFT_SERVER_IP = 'mc.hypixel.net'
-MINECRAFT_SERVER_PORT = 25565
+MINECRAFT_SERVER_IP = 'INSER_IP'
+MINECRAFT_SERVER_PORT = INSERT_PORT
 
 # Initialize Discord client
 intents = discord.Intents.default()
@@ -29,11 +29,11 @@ def get_server_info():
             status = '`💚 ONLINE`'
         else:
             status = '`❤️ OFFLINE`'
-        player_count = data.get('players', {}).get('online', 0) + 0  # Add 4 to the retrieved player count
+        player_count = data.get('players', {}).get('online', 0) + 0  # Add 0 to the retrieved player count
         return status, player_count
     except Exception as e:
         print(f"Error occurred while querying Minecraft server: {e}")
-        return '`❤️ OFFLINE`', 0  # Return default player count as 4 if there's an error
+        return '`❤️ OFFLINE`', 0  # Return default player count as 0 if there's an error
 
 # Function to check if it's 6:38 PM Indian time
 def is_indian_time_638pm():
@@ -49,7 +49,7 @@ async def update_player_count():
 
     # If it's 6:38 PM Indian time, send a message mentioning @here
     if is_indian_time_638pm():
-        channel = client.get_channel(1216750826236678145)  # Replace with your channel ID
+        channel = client.get_channel(INSER_CHNL_ID)  # Replace with your channel ID
         await channel.send("@here Server is up and restarted!")
 
     # If player count has changed or server status has changed, update Discord message
@@ -62,17 +62,17 @@ async def update_player_count():
             embed.set_field_at(1, name='> **Playing**', value=f'```Total: {player_count} Players ❤️```', inline=False)
             await message.edit(embed=embed)
         else:
-            embed = discord.Embed(title='Hometown Network', url='https://htmc.one/', color=discord.Color.green() if 'ONLINE' in status else discord.Color.red())
+            embed = discord.Embed(title='XYZ NETWORK', url='https://xyz.one/', color=discord.Color.green() if 'ONLINE' in status else discord.Color.red())
             embed.add_field(name='> **Status**', value=f'``{status}``', inline=False)
             embed.add_field(name='> **Playing**', value=f'```Total: {player_count} Players ❤️```', inline=False)
-            embed.add_field(name='> **Server IP**', value='```PLAY.HTMC.ONE```', inline=True)
-            embed.add_field(name='> **Server Port**', value='```25662```', inline=True)
-            embed.add_field(name='> **Server Events**', value='```PVP Event 15 March\nBase Raiding 30 March```', inline=False)
+            embed.add_field(name='> **Server IP**', value='```SERVER_IP```', inline=True)
+            embed.add_field(name='> **Server Port**', value='```SERVER_PORT```', inline=True)
+            embed.add_field(name='> **Server Events**', value='```Insert Events Here```', inline=False)
             embed.add_field(name='> **Server Restart Time**', value='```18:38 IST Daily```', inline=False)
             embed.add_field(name='> **Versions**', value='```[1.9x-1.20.4x]```          ', inline=False)
-            embed.set_image(url='https://cdn.discordapp.com/attachments/1200404861959819274/1209834352515751996/standard.gif?ex=65fad20b&is=65e85d0b&hm=a8a24f66bfa767efe074c455e7650d4a745f4c9bea9fa4056dbc5abd3a6fac88')
-            embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/1200404861959819274/1213454042181664848/logo_unede.png?ex=65f58824&is=65e31324&hm=134fb04c959d122d4932de9a9b5dab5db8ef6621563685d5ff4962cf314bc47c')
-            embed.set_footer(text='Made by iNinjaOP for Hometown Network')
+            embed.set_image(url='https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fsearch%2Frickroll-gifs&psig=AOvVaw07AtUUPzRwAnfAr48UGLv6&ust=1710255125926000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCLioqv667IQDFQAAAAAdAAAAABAE')
+            embed.set_thumbnail(url='https://www.google.com/url?sa=i&url=https%3A%2F%2Ftenor.com%2Fsearch%2Frickroll-gifs&psig=AOvVaw07AtUUPzRwAnfAr48UGLv6&ust=1710255125926000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCLioqv667IQDFQAAAAAdAAAAABAE')
+            embed.set_footer(text='Made by iNinjaOP')
             message = await channel.send(embed=embed)
             message_id = message.id
         prev_player_count = player_count
@@ -83,10 +83,10 @@ async def on_ready():
     print(f'Logged in as {client.user}')
 
     # Set the bot's presence to "Made By iNinjaOP"
-    await client.change_presence(activity=discord.Game(name='Made By iNinjaOP'))
+    await client.change_presence(activity=discord.Game(name='Crafted By iNinjaOP'))
 
     # Delete previous message if it exists
-    channel = client.get_channel(1216750826236678145)  # Replace with your channel ID
+    channel = client.get_channel(INSER_CHNL_ID)  # Replace with your channel ID
     async for msg in channel.history(limit=200):
         if msg.author == client.user:
             await msg.delete()
