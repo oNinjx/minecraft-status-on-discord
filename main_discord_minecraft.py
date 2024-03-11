@@ -5,7 +5,7 @@ import os
 import datetime
 import pytz
 
-TOKEN = 'MTIxNjczMDEyMTI0Mzg1MjkxNA.GJyy-j.WUhj99xRJfrhll5c7egWEWQRIVWIEKaYw3g5W4'
+TOKEN = 'INSERT_TOKEN'
 
 # Minecraft server IP and port
 MINECRAFT_SERVER_IP = 'mc.hypixel.net'
